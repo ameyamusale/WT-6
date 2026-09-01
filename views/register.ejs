@@ -1,0 +1,33 @@
+<%- include("partials/header", { title: "Registration" }) %>
+
+<section class="auth-section">
+  <div class="auth-card">
+    <div class="auth-icon">📖</div>
+    <p class="eyebrow">JOIN BOOKNEST</p>
+    <h1>Create Account</h1>
+    <p class="muted">Register to get started.</p>
+
+    <% if (error) { %><div class="alert error"><%= error %></div><% } %>
+    <% if (success) { %><div class="alert success"><%= success %></div><% } %>
+
+    <form method="POST" action="/register" class="form" onsubmit="return validateRegistration()">
+      <label>Full Name
+        <input type="text" name="name" id="name" required value="<%= form.name || '' %>" placeholder="Your name">
+      </label>
+      <label>Email
+        <input type="email" name="email" id="email" required value="<%= form.email || '' %>" placeholder="you@example.com">
+      </label>
+      <label>Password
+        <input type="password" name="password" id="password" required minlength="6" placeholder="Minimum 6 characters">
+      </label>
+      <label>Confirm Password
+        <input type="password" name="confirmPassword" id="confirmPassword" required minlength="6" placeholder="Repeat password">
+      </label>
+      <button class="primary-btn full" type="submit">Register</button>
+    </form>
+
+    <p class="form-footer">Already registered? <a href="/login">Login here</a></p>
+  </div>
+</section>
+
+<%- include("partials/footer") %>

@@ -1,0 +1,46 @@
+<%- include("partials/header", { title: "Catalogue" }) %>
+
+<section class="page-banner">
+  <div class="container">
+    <p class="eyebrow">OUR COLLECTION</p>
+    <h1>Book Catalogue</h1>
+    <p>Search and filter books from our collection.</p>
+  </div>
+</section>
+
+<section class="container section">
+  <form class="filters" method="GET" action="/catalogue">
+    <input type="text" name="search" placeholder="Search by title or author..." value="<%= search %>">
+    <select name="category">
+      <option value="">All categories</option>
+      <% categories.forEach(c => { %>
+        <option value="<%= c.category %>" <%= category === c.category ? "selected" : "" %>><%= c.category %></option>
+      <% }) %>
+    </select>
+    <button class="primary-btn" type="submit">Search</button>
+  </form>
+
+  <% if (!books.length) { %>
+    <div class="empty"><h2>No books found</h2><p>Try another search or category.</p></div>
+  <% } else { %>
+    <div class="book-grid">
+      <% books.forEach(book => { %>
+        <article class="book-card">
+          <img src="<%= book.image_url %>" alt="<%= book.title %>">
+          <div class="book-info">
+            <span class="tag"><%= book.category %></span>
+            <h3><%= book.title %></h3>
+            <p class="author">by <%= book.author %></p>
+            <p class="description"><%= book.description %></p>
+            <div class="price-row">
+              <strong>₹<%= Number(book.price).toFixed(2) %></strong>
+              <button class="small-btn" onclick="addToCart('<%= book.title.replace(/'/g, "\\'") %>')">Add</button>
+            </div>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  <% } %>
+</section>
+
+<%- include("partials/footer") %>

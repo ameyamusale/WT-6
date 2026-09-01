@@ -1,0 +1,52 @@
+<%- include("partials/header", { title: "Home" }) %>
+
+<section class="hero">
+  <div class="container hero-content">
+    <div>
+      <p class="eyebrow">ONLINE BOOK STORE</p>
+      <h1>Find your next<br><span>great read.</span></h1>
+      <p class="hero-text">Explore a curated collection of fiction, technology, finance and self-help books.</p>
+      <a href="/catalogue" class="primary-btn">Browse Catalogue →</a>
+    </div>
+    <div class="hero-card">
+      <div class="book-stack">📚</div>
+      <h3>Knowledge is a journey.</h3>
+      <p>One book can change the way you see the world.</p>
+    </div>
+  </div>
+</section>
+
+<section class="container section">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">FEATURED BOOKS</p>
+      <h2>Popular picks</h2>
+    </div>
+    <a href="/catalogue" class="text-link">View all →</a>
+  </div>
+
+  <div class="book-grid">
+    <% books.forEach(book => { %>
+      <article class="book-card">
+        <img src="<%= book.image_url %>" alt="<%= book.title %>">
+        <div class="book-info">
+          <span class="tag"><%= book.category %></span>
+          <h3><%= book.title %></h3>
+          <p class="author">by <%= book.author %></p>
+          <div class="price-row">
+            <strong>₹<%= Number(book.price).toFixed(2) %></strong>
+            <button class="small-btn" onclick="addToCart('<%= book.title.replace(/'/g, "\\'") %>')">Add</button>
+          </div>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+</section>
+
+<section class="container features">
+  <div><b>🔒 Secure</b><span>Passwords are hashed before storage.</span></div>
+  <div><b>⚡ Fast</b><span>Express server with MySQL connection pool.</span></div>
+  <div><b>📱 Responsive</b><span>Works on desktop, tablet and mobile.</span></div>
+</section>
+
+<%- include("partials/footer") %>
