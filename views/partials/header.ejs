@@ -3,25 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title || "BookNest" %> | Online Book Store</title>
+  <title><%= title || 'PageAura' %></title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
-<header class="navbar">
-  <div class="container nav-inner">
-    <a href="/" class="logo">Book<span>Nest</span></a>
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
-    <nav id="mainNav">
-      <a href="/">Home</a>
-      <a href="/catalogue">Catalogue</a>
-      <% if (user) { %>
-        <span class="welcome">Hi, <%= user.name %></span>
-        <a href="/logout" class="nav-btn">Logout</a>
-      <% } else { %>
-        <a href="/login">Login</a>
-        <a href="/register" class="nav-btn">Register</a>
-      <% } %>
-    </nav>
-  </div>
-</header>
-<main>
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="/" class="brand">
+        <span class="brand-icon">P</span>
+        <span>PageAura</span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="/" class="<%= currentPage === 'home' ? 'active' : '' %>">Home</a>
+        <a href="/catalogue" class="<%= currentPage === 'catalogue' ? 'active' : '' %>">Catalogue</a>
+
+        <% if (user) { %>
+          <span class="welcome">Hi, <%= user.name %></span>
+          <a href="/logout" class="nav-button">Logout</a>
+        <% } else { %>
+          <a href="/login">Login</a>
+          <a href="/register" class="nav-button">Register</a>
+        <% } %>
+      </nav>
+    </div>
+  </header>
+
+  <main>

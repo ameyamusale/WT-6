@@ -1,26 +1,58 @@
-<%- include("partials/header", { title: "Login" }) %>
+<%- include('partials/header', { title: 'PageAura | Login', currentPage: 'login' }) %>
 
 <section class="auth-section">
   <div class="auth-card">
-    <div class="auth-icon">🔐</div>
-    <p class="eyebrow">WELCOME BACK</p>
-    <h1>Login</h1>
-    <p class="muted">Sign in to your BookNest account.</p>
+    <div class="auth-header">
+      <span class="eyebrow">WELCOME BACK</span>
+      <h1>Login to PageAura</h1>
+      <p>Continue your reading journey.</p>
+    </div>
 
-    <% if (error) { %><div class="alert error"><%= error %></div><% } %>
+    <% if (error) { %>
+      <div class="alert alert-error">
+        <%= error %>
+      </div>
+    <% } %>
 
-    <form method="POST" action="/login" class="form">
-      <label>Email
-        <input type="email" name="email" required placeholder="you@example.com">
-      </label>
-      <label>Password
-        <input type="password" name="password" required placeholder="Enter password">
-      </label>
-      <button class="primary-btn full" type="submit">Login</button>
+    <% if (success) { %>
+      <div class="alert alert-success">
+        <%= success %>
+      </div>
+    <% } %>
+
+    <form method="POST" action="/login">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="you@example.com"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          required
+        >
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-full">
+        Login
+      </button>
     </form>
 
-    <p class="form-footer">Don't have an account? <a href="/register">Create one</a></p>
+    <p class="auth-footer">
+      Don't have an account?
+      <a href="/register">Create one</a>
+    </p>
   </div>
 </section>
 
-<%- include("partials/footer") %>
+<%- include('partials/footer') %>
